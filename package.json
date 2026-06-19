@@ -1,0 +1,52 @@
+{
+  "name": "react-native-pure-bottom-sheet",
+  "version": "1.1.0",
+  "description": "A lightweight, zero-dependency, performant drag-to-dismiss bottom sheet for React Native and Expo with spring snap points, keyboard avoiding, auto-fit content sizing, and ScrollView integration.",
+  "main": "dist/index.js",
+  "module": "dist/index.esm.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "prepare": "npm run build"
+  },
+  "keywords": [
+    "react-native",
+    "expo",
+    "bottom-sheet",
+    "modal",
+    "drag-to-dismiss",
+    "sheet",
+    "drawer",
+    "snap-points",
+    "zero-dependency",
+    "lightweight",
+    "keyboard-avoiding",
+    "auto-fit",
+    "fit-content"
+  ],
+  "author": "",
+  "license": "MIT",
+  "peerDependencies": {
+    "react": ">=16.8.0",
+    "react-native": ">=0.60.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.0",
+    "@types/react-native": "^0.73.0",
+    "react": "18.2.0",
+    "react-native": "0.74.1",
+    "typescript": "^5.4.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Coderkube-App/react-native-pure-bottom-sheet.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Coderkube-App/react-native-pure-bottom-sheet/issues"
+  },
+  "homepage": "https://github.com/Coderkube-App/react-native-pure-bottom-sheet#readme"
+}

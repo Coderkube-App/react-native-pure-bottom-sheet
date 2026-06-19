@@ -1,0 +1,260 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 520" width="860" height="520">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&amp;family=Inter:wght@400;600;700&amp;display=swap');
+      .fm{font-family:'Fira Code',monospace}.fs{font-family:'Inter',sans-serif}
+
+      /* Sheet slide/drag sequence */
+      @keyframes sheetMove {
+        0%, 12.5% { transform: translateY(240px); } /* closed */
+        20.8%, 37.5% { transform: translateY(130px); } /* settled at snap 0 */
+        45.8%, 62.5% { transform: translateY(40px); } /* settled at snap 1 */
+        70.8% { transform: translateY(100px); } /* dragged down */
+        79.2%, 87.5% { transform: translateY(130px); } /* snapped back to snap 0 */
+        95.8%, 100% { transform: translateY(240px); } /* closed */
+      }
+      .sheet-body { animation: sheetMove 12s cubic-bezier(0.25, 1, 0.5, 1) infinite; }
+
+      /* Finger tap pointer motion */
+      @keyframes fingerMove {
+        0%, 10.5% { transform: translate(190px, 290px); opacity: 0; }
+        12.5% { transform: translate(190px, 290px); opacity: 0.5; }
+        20.8% { transform: translate(190px, 190px); opacity: 0.5; }
+        22.8%, 35.5% { transform: translate(190px, 190px); opacity: 0; }
+        37.5% { transform: translate(190px, 190px); opacity: 0.5; }
+        45.8% { transform: translate(190px, 100px); opacity: 0.5; }
+        47.8%, 60.5% { transform: translate(190px, 100px); opacity: 0; }
+        62.5% { transform: translate(190px, 100px); opacity: 0.5; }
+        70.8% { transform: translate(190px, 160px); opacity: 0.5; }
+        72.8%, 85.5% { transform: translate(190px, 160px); opacity: 0; }
+        90.5% { transform: translate(190px, 190px); opacity: 0.5; }
+        95.8% { transform: translate(190px, 290px); opacity: 0.5; }
+        97.8%, 100% { transform: translate(190px, 290px); opacity: 0; }
+      }
+      .touch-indicator { animation: fingerMove 12s cubic-bezier(0.25, 1, 0.5, 1) infinite; }
+
+      /* Synchronized Index labels */
+      @keyframes showIndexClosed {
+        0%, 12.5%, 95.8%, 100% { opacity: 1; }
+        12.6%, 95.7% { opacity: 0; }
+      }
+      @keyframes showIndex0 {
+        12.6%, 37.5%, 70.9%, 95.7% { opacity: 1; }
+        0%, 12.5%, 37.6%, 70.8%, 95.8%, 100% { opacity: 0; }
+      }
+      @keyframes showIndex1 {
+        37.6%, 70.8% { opacity: 1; }
+        0%, 37.5%, 70.9%, 100% { opacity: 0; }
+      }
+      .idx-closed { animation: showIndexClosed 12s step-end infinite; }
+      .idx-0 { animation: showIndex0 12s step-end infinite; }
+      .idx-1 { animation: showIndex1 12s step-end infinite; }
+
+      /* Status logs settled vs dragging */
+      @keyframes statusSettled {
+        0%, 12.5%, 20.8%, 37.5%, 45.8%, 62.5%, 79.2%, 100% { opacity: 1; }
+        12.6%, 20.7%, 37.6%, 45.7%, 62.6%, 79.1% { opacity: 0; }
+      }
+      @keyframes statusDragging {
+        12.6%, 20.7%, 37.6%, 45.7%, 62.6%, 79.1% { opacity: 1; }
+        0%, 12.5%, 20.8%, 37.5%, 45.8%, 62.5%, 79.2%, 100% { opacity: 0; }
+      }
+      .status-settled { animation: statusSettled 12s step-end infinite; }
+      .status-dragging { animation: statusDragging 12s step-end infinite; }
+
+      /* Typewriter command line */
+      @keyframes type1 { 0%, 5% { width: 0; } 18%, 100% { width: 240px; } }
+      @keyframes type2 { 0%, 40% { width: 0; } 58%, 100% { width: 135px; } }
+      .cmd1 { animation: type1 12s linear infinite; }
+      .cmd2 { animation: type2 12s linear infinite; }
+
+      @keyframes cursor1Move {
+        0%, 5% { transform: translateX(0); opacity: 1; }
+        18% { transform: translateX(240px); opacity: 1; }
+        22%, 100% { transform: translateX(240px); opacity: 0; }
+      }
+      @keyframes cursor2Move {
+        0%, 40% { transform: translateX(0); opacity: 0; }
+        41% { transform: translateX(0); opacity: 1; }
+        58% { transform: translateX(135px); opacity: 1; }
+        63%, 100% { transform: translateX(135px); opacity: 0; }
+      }
+      .cur1 { animation: cursor1Move 12s linear infinite, blink 1s step-end infinite; }
+      .cur2 { animation: cursor2Move 12s linear infinite, blink 1s step-end infinite; }
+
+      @keyframes blink { 0%, 49% { opacity: 1; } 50%, 100% { opacity: 0; } }
+
+      /* Terminal logs timings */
+      @keyframes showL1 { 0%, 21.9% { opacity: 0; } 22%, 100% { opacity: 1; } }
+      @keyframes showL2 { 0%, 39.9% { opacity: 0; } 40%, 100% { opacity: 1; } }
+      @keyframes showL3 { 0%, 59.9% { opacity: 0; } 60%, 100% { opacity: 1; } }
+      @keyframes showL4 { 0%, 69.9% { opacity: 0; } 70%, 100% { opacity: 1; } }
+      @keyframes showL5 { 0%, 82.9% { opacity: 0; } 83%, 100% { opacity: 1; } }
+      @keyframes showL6 { 0%, 91.9% { opacity: 0; } 92%, 100% { opacity: 1; } }
+      .log1 { animation: showL1 12s step-end infinite; }
+      .log2 { animation: showL2 12s step-end infinite; }
+      .log3 { animation: showL3 12s step-end infinite; }
+      .log4 { animation: showL4 12s step-end infinite; }
+      .log5 { animation: showL5 12s step-end infinite; }
+      .log6 { animation: showL6 12s step-end infinite; }
+    </style>
+
+    <!-- Filters &amp; Shadows -->
+    <filter id="ds"><feDropShadow dx="0" dy="6" stdDeviation="15" flood-color="#000" flood-opacity=".6"/></filter>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="3" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+
+    <clipPath id="phone-clip">
+      <rect x="80" y="60" width="220" height="240" rx="28" />
+    </clipPath>
+
+    <!-- UI Background Glows -->
+    <radialGradient id="bg-glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#8b5cf6" stop-opacity="0.10" />
+      <stop offset="100%" stop-color="#8b5cf6" stop-opacity="0" />
+    </radialGradient>
+
+    <!-- Clips for typewriter -->
+    <clipPath id="clip-c1"><rect class="cmd1" x="16" y="-8" width="0" height="20" /></clipPath>
+    <clipPath id="clip-c2"><rect class="cmd2" x="16" y="36" width="0" height="20" /></clipPath>
+  </defs>
+
+  <!-- Base Canvas -->
+  <rect fill="#04050a" width="860" height="520" rx="16" />
+  <rect fill="url(#bg-glow)" width="860" height="520" rx="16" />
+
+  <!-- Top Title -->
+  <text class="fs" x="430" y="30" fill="#a78bfa" font-size="10" font-weight="700" text-anchor="middle" letter-spacing="3" opacity="0.6">PERFORMANT SPRING-DRIVEN BOTTOM SHEET FOR EXPO &amp; RN</text>
+
+  <!-- ════════════ COLUMN 1: DEVICE PREVIEW (ANIMATED SHEET) ════════════ -->
+  <g transform="translate(0, 0)" filter="url(#ds)">
+    <!-- Device Frame Outer -->
+    <rect x="76" y="56" width="228" height="248" rx="32" fill="#1e1e24" stroke="rgba(255,255,255,0.15)" stroke-width="2" />
+    
+    <!-- Render Area (Clipped Phone Screen) -->
+    <g clip-path="url(#phone-clip)">
+      <!-- Backdrop content behind sheet -->
+      <rect x="80" y="60" width="220" height="240" fill="#080710" />
+      <text class="fs" x="190" y="115" fill="#38bdf8" font-size="10" font-weight="700" text-anchor="middle" opacity="0.4">Backdrop Map View</text>
+      <path d="M110,90 Q140,150 190,120 T270,160" fill="none" stroke="rgba(56, 189, 248, 0.15)" stroke-width="2" />
+      
+      <!-- Interactive bottom sheet panel (Animated translation) -->
+      <g class="sheet-body" transform="translate(80, 60)">
+        <!-- Dimmed overlay (representing the backdrop fade) -->
+        <!-- Sheet container -->
+        <rect width="220" height="240" rx="16" fill="#0f172a" stroke="rgba(255,255,255,0.08)" stroke-width="1" />
+        
+        <!-- Drag Handle -->
+        <rect x="90" y="8" width="40" height="4" rx="2" fill="rgba(255,255,255,0.2)" />
+        
+        <!-- Sheet content mockups -->
+        <text class="fs" x="20" y="32" fill="#ffffff" font-size="9.5" font-weight="700">Explore Locations</text>
+        <text class="fs" x="20" y="46" fill="#64748b" font-size="7.5" font-weight="600">Select snap options below</text>
+        
+        <!-- List row mockups -->
+        <rect x="20" y="62" width="180" height="26" rx="6" fill="rgba(255,255,255,0.04)" />
+        <circle cx="34" cy="75" r="6" fill="#38bdf8" opacity="0.3" />
+        <rect x="50" y="72" width="100" height="6" rx="2" fill="rgba(255,255,255,0.15)" />
+
+        <rect x="20" y="94" width="180" height="26" rx="6" fill="rgba(255,255,255,0.04)" />
+        <circle cx="34" cy="107" r="6" fill="#8b5cf6" opacity="0.3" />
+        <rect x="50" y="104" width="80" height="6" rx="2" fill="rgba(255,255,255,0.15)" />
+
+        <rect x="20" y="126" width="180" height="26" rx="6" fill="rgba(255,255,255,0.04)" />
+        <circle cx="34" cy="139" r="6" fill="#10b981" opacity="0.3" />
+        <rect x="50" y="136" width="90" height="6" rx="2" fill="rgba(255,255,255,0.15)" />
+      </g>
+    </g>
+
+    <!-- Translucent Finger pointer touch overlay (Animated tracking handle) -->
+    <circle class="touch-indicator" r="12" fill="rgba(255,255,255,0.2)" stroke="#ffffff" stroke-width="1.5" filter="url(#glow)" />
+    
+    <!-- Caption -->
+    <text class="fs" x="190" y="325" fill="#a78bfa" font-size="9" font-weight="700" text-anchor="middle" letter-spacing="1">SPRING PAN PHYSICS</text>
+  </g>
+
+  <!-- Connecting line -->
+  <line x1="310" y1="180" x2="540" y2="180" stroke="rgba(124, 92, 246, 0.25)" stroke-width="1.5" stroke-dasharray="4,4" />
+  <polygon points="540,176 548,180 540,184" fill="#8b5cf6" opacity="0.6" />
+
+  <!-- ════════════ COLUMN 3: DRAG STATUS & METADATA ════════════ -->
+  <g transform="translate(550, 60)" filter="url(#ds)">
+    <rect width="230" height="240" rx="12" fill="#0d1117" stroke="rgba(6, 182, 212, 0.2)" stroke-width="1.5" />
+    <rect width="230" height="24" rx="12" fill="#161b22" />
+    <rect y="16" width="230" height="8" fill="#161b22" />
+    <text class="fs" x="115" y="15" fill="#8b949e" font-size="9" font-weight="600" text-anchor="middle">Interactive State Auditor</text>
+
+    <!-- Snap Points List -->
+    <g transform="translate(16, 42)">
+      <text class="fs" y="12" fill="#64748b" font-size="9" font-weight="600" letter-spacing="0.5">SNAP CONFIGURATION</text>
+      <text class="fm" y="28" fill="#a5b4fc" font-size="10">snapPoints: [0.35, 0.75]</text>
+      
+      <!-- Dynamic index display -->
+      <g transform="translate(0, 52)">
+        <text class="fs" fill="#64748b" font-size="9" font-weight="600" letter-spacing="0.5">CURRENT SNAP INDEX</text>
+        <!-- Overlay index display synced -->
+        <g class="idx-closed"><rect y="10" width="80" height="24" rx="4" fill="rgba(255,255,255,0.04)" /><text class="fm" x="40" y="26" fill="#8b949e" font-size="10.5" font-weight="700" text-anchor="middle">-1 (Closed)</text></g>
+        <g class="idx-0"><rect y="10" width="80" height="24" rx="4" fill="rgba(56,189,248,0.1)" stroke="rgba(56,189,248,0.2)" /><text class="fm" x="40" y="26" fill="#38bdf8" font-size="10.5" font-weight="700" text-anchor="middle">0 (0.35)</text></g>
+        <g class="idx-1"><rect y="10" width="80" height="24" rx="4" fill="rgba(139,92,246,0.1)" stroke="rgba(139,92,246,0.2)" /><text class="fm" x="40" y="26" fill="#a78bfa" font-size="10.5" font-weight="700" text-anchor="middle">1 (0.75)</text></g>
+      </g>
+
+      <!-- Dynamic action status -->
+      <g transform="translate(0, 110)">
+        <text class="fs" fill="#64748b" font-size="9" font-weight="600" letter-spacing="0.5">INTERACTION STATE</text>
+        <g class="status-settled"><circle cx="8" cy="22" r="4" fill="#10b981" filter="url(#glow)" /><text class="fs" x="20" y="26" fill="#10b981" font-size="9.5" font-weight="700">Settled (Idle)</text></g>
+        <g class="status-dragging"><circle cx="8" cy="22" r="4" fill="#f59e0b" filter="url(#glow)" /><text class="fs" x="20" y="26" fill="#f59e0b" font-size="9.5" font-weight="700">Active (Dragging)</text></g>
+      </g>
+
+      <!-- Meta stats box -->
+      <rect y="166" width="198" height="34" rx="6" fill="rgba(6, 182, 212, 0.08)" stroke="rgba(6, 182, 212, 0.2)" />
+      <text class="fs" x="99" y="186" fill="#06b6d4" font-size="8.5" font-weight="700" text-anchor="middle" letter-spacing="0.5">COMPATIBILITY: EXPO GO SAFE</text>
+    </g>
+  </g>
+
+  <!-- ════════════ BOTTOM PANEL: LIVE DEVELOPER TERMINAL ════════════ -->
+  <g transform="translate(30, 310)" filter="url(#ds)">
+    <rect width="800" height="186" rx="10" fill="rgba(13, 17, 23, 0.9)" stroke="rgba(255,255,255,0.08)" stroke-width="1.5" />
+    
+    <!-- Titlebar -->
+    <rect width="800" height="24" rx="10" fill="#161b22" />
+    <rect y="16" width="800" height="8" fill="#161b22" />
+    <circle cx="16" cy="12" r="4" fill="#ff5f56" /><circle cx="28" cy="12" r="4" fill="#ffbd2e" /><circle cx="40" cy="12" r="4" fill="#27c93f" />
+    <text class="fs" x="400" y="16" fill="#8b949e" font-size="9" font-weight="600" text-anchor="middle">developer-console — react-native-pure-bottom-sheet</text>
+    <line x1="0" y1="24" x2="800" y2="24" stroke="rgba(255,255,255,0.05)" stroke-width="1" />
+
+    <!-- Terminal Output -->
+    <g transform="translate(20, 32)">
+      <!-- Line 1: npm install command -->
+      <text class="fm" y="4" font-size="9.5" fill="#58a6ff" font-weight="700">❯</text>
+      <text class="fm" x="16" y="4" font-size="9.5" fill="#c9d1d9" clip-path="url(#clip-c1)">npm install react-native-pure-bottom-sheet</text>
+      <rect class="cur1" x="16" y="-7" width="6" height="12" fill="#58a6ff" />
+
+      <!-- Success log after installation -->
+      <g class="log1">
+        <text class="fm" x="16" y="26" font-size="9.5" fill="#57ab5a">✔ Installed react-native-pure-bottom-sheet@1.1.0 (Zero Dependencies, Expo-Safe)</text>
+      </g>
+
+      <!-- Line 2: executing script -->
+      <g class="log2">
+        <text class="fm" y="48" font-size="9.5" fill="#58a6ff" font-weight="700">❯</text>
+        <text class="fm" x="16" y="48" font-size="9.5" fill="#c9d1d9" clip-path="url(#clip-c2)">node run-sheet-demo.js</text>
+        <rect class="cur2" x="16" y="37" width="6" height="12" fill="#58a6ff" />
+      </g>
+
+      <!-- Execution logs -->
+      <g class="log3" transform="translate(16, 72)">
+        <text class="fm" font-size="9.5" fill="#8b949e">[Bottom Sheet] Initialized. Snap points loaded: [0.35, 0.75]...</text>
+      </g>
+      <g class="log4" transform="translate(16, 92)">
+        <text class="fm" font-size="9.5" fill="#8b949e">[PAN RESPONDER] Touch event captured. GestureState active.</text>
+      </g>
+      <g class="log5" transform="translate(16, 114)">
+        <text class="fm" font-size="9.5" fill="#10b981">[ANIMATION] 60 FPS | Snap settled at index 0 (Height: 295px)</text>
+      </g>
+      <g class="log6" transform="translate(16, 134)">
+        <text class="fm" font-size="9.5" fill="#a78bfa" font-weight="700">[ANIMATION] Snap settled at index 1 (Height: 633px) | autoFitContent: false</text>
+      </g>
+    </g>
+  </g>
+</svg>
